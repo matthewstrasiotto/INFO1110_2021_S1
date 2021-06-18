@@ -38,17 +38,15 @@ def transaction(total_price, user_paid):
     # could do some checks about if this is negative, or if equal
     change_remaining =  user_paid - total_price
     change_remaining = int(change_remaining * 100)
+    
+    # iterate over each of the keys
+    for denom_string in denoms.keys():
+        denom_cents = denoms[denom_string]
 
-    for denom_string in denoms:
-        denom = denoms[denom_string]
-        n_divisions = change_remaining // denom
-        change_remaining -= n_divisions * denom
+        n_divisions = change_remaining // denom_cents
+        change_remaining -= n_divisions * denom_cents
 
-        # As you go, initialize each entry in the output dictionary to 0
-        if denom_string not in out:
-            out[denom_string] = 0
-
-        out[denom_string] += n_divisions
+        out[denom_string] = n_divisions
     return out
 
 out = transaction(36, 200.5)
