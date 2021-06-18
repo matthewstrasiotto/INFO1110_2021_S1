@@ -22,25 +22,25 @@ def calculate_total(n_tix, n_popcorn):
 
 def transaction(total_price, user_paid):
     denoms = {
-        100*100: "$100",
-        100*50: "$50",
-        100*20: "$20",
-        100*10: "$10",
-        100*5: "$5",
-        100*2: "$2",
-        100*1: "$1",
-        50: "50 cents",
-        20: "20 cents",
-        10: "10 cents",
-        5: "5 cents"
+       "$100"    : 100*100,
+       "$50"     : 100*50,
+       "$20"     : 100*20, 
+       "$10"     : 100*10,
+       "$5"      : 100*5, 
+       "$2"      : 100*2,  
+       "$1"      : 100*1,  
+       "50 cents": 50,  
+       "20 cents": 20,     
+       "10 cents": 10,     
+       "5 cents" : 5     
     }
     out = {}
     # could do some checks about if this is negative, or if equal
     curr_remaining =  user_paid - total_price
     curr_remaining = int(curr_remaining * 100)
 
-    for denom in denoms:
-        denom_string = denoms[denom]
+    for denom_string in denoms:
+        denom = denoms[denom_string]
         n_divisions = curr_remaining // denom
         curr_remaining -= n_divisions * denom
 
